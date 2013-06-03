@@ -31,6 +31,12 @@ var register = function (name, component) {
 var getAll = function getAll(require, name) {
   if (registered[name]) return;
   registered[name] = true;
+  if (typeof(name) !== 'string') {
+    for (var i=0; i<name.length; i++) {
+      getAll(require, name[i]);
+    }
+    return;
+  }
   var comp;
   try {
     comp = require(name);
@@ -38,9 +44,7 @@ var getAll = function getAll(require, name) {
     console.log('Failed to load angular component: ' + name);
     return;
   }
-  for (var i=0; i<comp.deps.length; i++) {
-    getAll(require, comp.deps[i]);
-  }
+  getAll(require, comp.deps);
   register(name, comp);
 };
 
