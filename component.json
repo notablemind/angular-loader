@@ -1,0 +1,14 @@
+{
+  "name": "angular-loader",
+  "repo": "notablemind/angular-loader",
+  "description": "Bootstrap components into angular modules",
+  "version": "0.0.1",
+  "keywords": [],
+  "dependencies": {},
+  "development": {},
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": [
+    "index.js"
+  ]
+}
