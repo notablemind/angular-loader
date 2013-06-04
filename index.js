@@ -5,7 +5,7 @@ var registered = {};
 var register = function (name, component) {
   if (registered[name]) return;
   registered[name] = true;
-  var deps = Object.keys(component.deps);
+  var deps = component.deps ? Object.keys(component.deps) : [];
   for (var i=0; i<deps.length; i++) {
     register(deps[i], component.deps[deps[i]]);
   }
