@@ -11,9 +11,7 @@ var register = function (name, component) {
   }
   var mod = registered[name] = angular.module(name, deps);
   if (component.directive) {
-    mod.directive(name, function(){
-      return component.directive;
-    });
+    mod.directive(name, component.directive);
   }
   if (component.filter) {
     mod.filter(name, component.filter);
@@ -21,9 +19,7 @@ var register = function (name, component) {
   if (component.directives) {
     var keys = Object.keys(component.directives);
     keys.forEach(function(name) {
-      mod.directive(name, function(){
-        return component.directives[name];
-      });
+      mod.directive(name, component.directives[name]);
     });
   }
   if (component.filters) {
