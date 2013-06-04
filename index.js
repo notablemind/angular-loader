@@ -3,7 +3,13 @@ var angular = require('angularjs');
 
 var registered = {};
 var register = function (name, component) {
-  var mod = registered[name] = angular.module(name, component.deps);
+  if (registered[name]) return;
+  registered[name] = true;
+  var deps = Object.keys(component.deps);
+  for (var i=0; i<deps.length; i++) {
+    register(deps[i], component.deps[deps[i]]);
+  }
+  var mod = registered[name] = angular.module(name, deps);
   if (component.directive) {
     mod.directive(name, function(){
       return component.directive;
@@ -28,26 +34,5 @@ var register = function (name, component) {
   }
 };
 
-var getAll = function getAll(require, name) {
-  if (registered[name]) return;
-  registered[name] = true;
-  if (typeof(name) !== 'string') {
-    for (var i=0; i<name.length; i++) {
-      getAll(require, name[i]);
-    }
-    return;
-  }
-  var comp;
-  try {
-    comp = require(name);
-  } catch (e) {
-    console.log('Failed to load angular component: ' + name);
-    return;
-  }
-  getAll(require, comp.deps);
-  register(name, comp);
-};
-
-module.exports = getAll;
-module.exports.register = register;
+module.exports = register;
 

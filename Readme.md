@@ -11,15 +11,11 @@
 
 ### module.exports(require, name)
 
-#### require
-
-The function with which to require components
-
 #### name
 
 The name of the component to require and angularify
 
-### module.exports.register(name, component)
+### module.exports(name, component)
 
 #### name
 
@@ -28,6 +24,8 @@ The name of the component (angular module)
 #### component
 
 Object, defining how the angular module is to be initialized.
+
+##### deps: obj; `{ name: component }`
 
 ##### directive: obj; used as
 
