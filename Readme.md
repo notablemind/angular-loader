@@ -29,16 +29,14 @@ Object, defining how the angular module is to be initialized.
 
 ##### directive: obj; used as
 
-    mod.directive(name, function(){
-      return comp.directive
-    });
+    mod.directive(name, ___);
 
 ##### filter: fn; used as
 
-    mod.directive(name, comp.filter)
+    mod.directive(name, ___)
 
-##### directives: obj; `{name: config, ...}`
-##### filters: obj; `{name: fn}`
+##### directives: obj; `{ name: fn, ... }` loaded like `directive`
+##### filters: obj; `{ name: fn, ... }` loaded like `filter`
 
 ## License
 

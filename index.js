@@ -1,4 +1,19 @@
 
+/**
+ * This is just bootstrapping components and angular together, without having
+ * to repeat myself over and over.
+ *
+ * name: the name of the angular module
+ * component:
+ *  {
+ *    deps: { name: component, ... }
+ *    directive: function - will be called with mod.directive(name, ___)
+ *    filter: function    - will be called with mod.filter(name, ___)
+ *    directives: { name: fn, ... } loaded like `directive`
+ *    filters: { name: fn, ... } loaded like `filter`
+ *  }
+ */
+
 var angular = require('angularjs');
 
 var registered = {};
